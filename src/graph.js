@@ -4,6 +4,8 @@ let colorNone = "#ccc";
 let colorOut = "#f00";
 let colorIn = "#00f";
 
+let fileName = 'flare.json';
+
 let tree = d3.cluster()
     .size([2 * Math.PI, radius - 100]);
 
@@ -56,7 +58,7 @@ function asyncGetFile(url) {
 }
 
 function main() {
-    let myPromise = asyncGetFile('flare.json');
+    let myPromise = asyncGetFile(fileName);
     myPromise.then((retrievedText) => {
         let data = hierarchy(JSON.parse(retrievedText));
         generateTree(data);

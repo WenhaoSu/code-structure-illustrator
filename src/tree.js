@@ -1,4 +1,5 @@
 let treeData = [];
+let fileName = 'hugeTree.json';
 
 function asyncGetFile(url) {
     console.log("Getting text file");
@@ -210,7 +211,7 @@ function generateTree() {
 }
 
 function main() {
-    let myPromise = asyncGetFile('htmlTree.json');
+    let myPromise = asyncGetFile(fileName);
     myPromise.then((retrievedText) => {
         treeData = JSON.parse(retrievedText);
         generateTree();
