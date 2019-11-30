@@ -29,7 +29,7 @@ function generateTree() {
             return [d.y, d.x];
         });
 
-    let svg = d3.select("body").append("svg")
+    let svg = d3.select("body").select("div").append("svg")
         .attr("width", width + margin.right + margin.left)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -210,7 +210,7 @@ function generateTree() {
 }
 
 function main() {
-    let myPromise = asyncGetFile('hugeTree.json');
+    let myPromise = asyncGetFile('htmlTree.json');
     myPromise.then((retrievedText) => {
         treeData = JSON.parse(retrievedText);
         generateTree();
