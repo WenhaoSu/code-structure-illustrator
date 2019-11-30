@@ -22,8 +22,7 @@ function generateTree() {
         duration = 750,
         root;
 
-    let tree = d3.layout.tree()
-        .size([height, width]);
+    let tree = d3.layout.tree().size([height, width]);
 
     let diagonal = d3.svg.diagonal()
         .projection(function (d) {
@@ -45,6 +44,15 @@ function generateTree() {
     d3.select(self.frameElement).style("height", "800px");
 
     function update(source) {
+
+        // Dynamically change the height of tree.
+        let newHeight = Math.max(tree.nodes(root).reverse().length * 20, height);
+
+        tree = d3.layout.tree().size([newHeight, width]);
+
+        d3.select("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", newHeight + margin.top + margin.bottom);
 
         // Compute the new tree layout.
         let nodes = tree.nodes(root).reverse(),
@@ -202,7 +210,7 @@ function generateTree() {
 }
 
 function main() {
-    let myPromise = asyncGetFile('htmlTree.json');
+    let myPromise = asyncGetFile('hugeTree.json');
     myPromise.then((retrievedText) => {
         treeData = JSON.parse(retrievedText);
         generateTree();
