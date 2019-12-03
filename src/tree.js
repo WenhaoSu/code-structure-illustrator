@@ -210,7 +210,32 @@ function generateTree() {
 
 }
 
-function main() {
+function parseJava()
+{
+    const { parse } = require("java-ast");
+    const javaText = `
+        public class HelloWorldExample{
+          public static void main(String args[]){
+            System.out.println("Hello World !");
+          }
+        }
+`;
+    const ast = parse(javaText);
+    console.log(ast);
+    console.log(ast.toStringTree());
+}
+
+
+function parseJavascript()
+{
+    var parser = require('luaparse');
+    var ast = parser.parse('i = 0');
+    console.log(JSON.stringify(ast));
+}
+
+window.onload = function () {
+
+    parseJava();
     let myPromise = asyncGetFile(fileName);
     myPromise.then((retrievedText) => {
         treeData = JSON.parse(retrievedText);

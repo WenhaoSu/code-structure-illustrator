@@ -1,0 +1,26 @@
+{
+  "name": "code-structure-illustrator",
+  "version": "1.0.0",
+  "description": "Graphical Illustration of Code Structure",
+  "main": "src/tree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WenhaoSu/code-structure-illustrator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WenhaoSu/code-structure-illustrator/issues"
+  },
+  "homepage": "https://github.com/WenhaoSu/code-structure-illustrator#readme",
+  "dependencies": {
+    "browsify": "0.0.4",
+    "d3": "^5.14.2",
+    "java-ast": "^0.1.0",
+    "java-parser": "^0.4.0",
+    "luaparse": "^0.2.1"
+  }
+}
