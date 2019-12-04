@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/WenhaoSu/code-structure-illustrator#readme",
   "dependencies": {
+    "array-slice": "^1.1.0",
     "browsify": "0.0.4",
+    "collections": "^5.1.9",
     "d3": "^5.14.2",
     "java-ast": "^0.1.0",
-    "java-parser": "^0.4.0",
-    "luaparse": "^0.2.1"
+    "java-parser": "^0.4.0"
   }
 }

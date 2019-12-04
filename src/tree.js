@@ -214,9 +214,9 @@ function parseJava()
 {
     const { parse } = require("java-ast");
     const javaText = `
-        public class HelloWorldExample{
+        public class Main{
           public static void main(String args[]){
-            System.out.println("Hello World !");
+            int i = 0;
           }
         }
 `;
@@ -225,17 +225,30 @@ function parseJava()
     console.log(ast.toStringTree());
 }
 
+function realParseJava()
+{
+    //TODO: Analyze the JSON cst
+    const { parse } = require("java-parser");
+    const javaText = `
+public class Main{
+  public static void main(String args[]){
+    System.out.println("Hello World !");
+  }
+}
+`;
+
+    const cst = parse(javaText);
+    console.log(cst);
+}
+
 
 function parseJavascript()
 {
-    var parser = require('luaparse');
-    var ast = parser.parse('i = 0');
-    console.log(JSON.stringify(ast));
 }
 
 window.onload = function () {
 
-    parseJava();
+    realParseJava();
     let myPromise = asyncGetFile(fileName);
     myPromise.then((retrievedText) => {
         treeData = JSON.parse(retrievedText);
