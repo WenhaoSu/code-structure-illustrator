@@ -1,5 +1,6 @@
 let treeData = [];
 let fileName = 'hugeTree.json';
+let test = [];
 
 function asyncGetFile(url) {
     console.log("Getting text file");
@@ -241,6 +242,23 @@ public class Main{
     console.log(cst);
 }
 
+function parseHTML()
+{
+    var htmlToJson = require('html-to-json');
+
+    htmlToJson.parse('<div><p>This is only an example</p></div>', {
+
+        p: function (doc) {
+            treeData = doc.find('div');
+            generateTree();
+        }
+
+    }).then(function (result) {
+
+        console.log(result.p); // 'this is only an example'
+
+    });
+}
 
 function parseJavascript()
 {
@@ -249,10 +267,12 @@ function parseJavascript()
 window.onload = function () {
 
     realParseJava();
+    parseHTML()
     let myPromise = asyncGetFile(fileName);
     myPromise.then((retrievedText) => {
-        treeData = JSON.parse(retrievedText);
-        generateTree();
+        // treeData = JSON.parse(retrievedText);
+        // console.log(treeData);
+        // generateTree();
     }).catch(
         (reason) => {
             console.log('Handle rejected promise (' + reason + ') here.');
