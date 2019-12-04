@@ -16,8 +16,8 @@ function asyncGetFile(url) {
 
 function generateTree() {
     // ************** Generate the tree diagram	 *****************
-    let margin = {top: 20, right: 120, bottom: 20, left: 120},
-        width = 960 - margin.right - margin.left,
+    let margin = {top: 20, right: 80, bottom: 20, left: 80},
+        width = 3000 - margin.right - margin.left,
         height = 500 - margin.top - margin.bottom;
 
     let i = 0,
@@ -31,7 +31,7 @@ function generateTree() {
             return [d.y, d.x];
         });
 
-    let svg = d3.select("body").select("div").append("svg")
+    let svg = d3.select("body").select("#graph").append("svg")
         .attr("width", width + margin.right + margin.left)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -62,7 +62,7 @@ function generateTree() {
 
         // Normalize for fixed-depth.
         nodes.forEach(function (d) {
-            d.y = d.depth * 180;
+            d.y = d.depth * 90;
         });
 
         // Update the nodes…
@@ -211,9 +211,8 @@ function generateTree() {
 
 }
 
-function parseJava()
-{
-    const { parse } = require("java-ast");
+function parseJava() {
+    const {parse} = require("java-ast");
     const javaText = `
         public class Main{
           public static void main(String args[]){
@@ -226,10 +225,9 @@ function parseJava()
     console.log(ast.toStringTree());
 }
 
-function realParseJava()
-{
+function realParseJava() {
     //TODO: Analyze the JSON cst
-    const { parse } = require("java-parser");
+    const {parse} = require("java-parser");
     const javaText = `
 public class Main{
   public static void main(String args[]){
@@ -242,14 +240,33 @@ public class Main{
     console.log(cst);
 }
 
-function parseHTML()
-{
-    var htmlToJson = require('html-to-json');
+window.onload = function () {
+    document.getElementById("but").onclick = parseHTML;
+}
 
-    htmlToJson.parse('<div><p>This is only an example</p></div>', {
+function updateTree(obj)
+{
+    let valid = ['p','h1','h2','h3'];
+    obj.children = obj.children.filter(function(value, index, arr){
+        return value.name !== undefined;
+    });
+
+    for (let i = 0; i < obj.children.length; i++) {
+        updateTree(obj.children[i]);
+    }
+}
+
+function parseHTML() {
+    let htmlToJson = require('html-to-json');
+    let htmltext = document.getElementById("t1").value;
+    console.log("here");
+
+    htmlToJson.parse(htmltext, {
 
         p: function (doc) {
-            treeData = doc.find('div');
+            treeData = doc.find('body');
+            updateTree(treeData[0]);
+            console.log(treeData);
             generateTree();
         }
 
@@ -260,11 +277,10 @@ function parseHTML()
     });
 }
 
-function parseJavascript()
-{
+function parseJavascript() {
 }
 
-window.onload = function () {
+function parse() {
 
     realParseJava();
     parseHTML()
