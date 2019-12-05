@@ -1,4 +1,4 @@
-let treeData = [];
+let treeData;
 let fileName = 'hugeTree.json';
 let test = [];
 
@@ -30,6 +30,7 @@ function generateTree() {
         .projection(function (d) {
             return [d.y, d.x];
         });
+    d3.select("body").select("#graph").select("svg").remove();
 
     let svg = d3.select("body").select("#graph").append("svg")
         .attr("width", width + margin.right + margin.left)
@@ -37,7 +38,7 @@ function generateTree() {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    root = treeData[0];
+    root = treeData;
     root.x0 = height / 2;
     root.y0 = 0;
 
@@ -247,26 +248,29 @@ window.onload = function () {
 function updateTree(obj)
 {
     let valid = ['p','h1','h2','h3'];
-    obj.children = obj.children.filter(function(value, index, arr){
-        return value.name !== undefined;
-    });
+    if (obj.children !== undefined)
+    {
+        obj.children = obj.children.filter(function(value, index, arr){
+            return value.name !== undefined;
+        });
 
-    for (let i = 0; i < obj.children.length; i++) {
-        updateTree(obj.children[i]);
+        for (let i = 0; i < obj.children.length; i++) {
+            updateTree(obj.children[i]);
+        }
     }
 }
 
 function parseHTML() {
     let htmlToJson = require('html-to-json');
     let htmltext = document.getElementById("t1").value;
-    console.log("here");
 
     htmlToJson.parse(htmltext, {
 
         p: function (doc) {
-            treeData = doc.find('body');
-            updateTree(treeData[0]);
+            console.log(doc[0]);
+            treeData = {'name':'root', 'children': doc[0].children };
             console.log(treeData);
+            updateTree(treeData);
             generateTree();
         }
 
