@@ -222,8 +222,6 @@ function parseJava() {
         }
 `;
     const ast = parse(javaText);
-    console.log(ast);
-    console.log(ast.toStringTree());
 }
 
 function realParseJava() {
@@ -267,17 +265,11 @@ function parseHTML() {
     htmlToJson.parse(htmltext, {
 
         p: function (doc) {
-            console.log(doc[0]);
             treeData = {'name':'root', 'children': doc[0].children };
-            console.log(treeData);
             updateTree(treeData);
             generateTree();
         }
-
     }).then(function (result) {
-
-        console.log(result.p); // 'this is only an example'
-
     });
 }
 
