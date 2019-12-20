@@ -2,17 +2,38 @@ let treeData;
 let fileName = 'hugeTree.json';
 let test = [];
 
-function asyncGetFile(url) {
-    console.log("Getting text file");
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onload = () => resolve(xhr.responseText);
-        xhr.onerror = () => reject(xhr.statusText);
-        xhr.send();
-        console.log("Made promise");
-    });
+
+
+
+
+// read file
+function getFile(event) {
+    const input = event.target;
+    if ('files' in input && input.files.length > 0) {
+        placeFileContent(
+            input.files[0]);
+    }
 }
+
+function placeFileContent(file) {
+    readFileContent(file).then(content => {
+        console.log(content);
+        realParseJava(content);
+    }).catch(error => console.log(error));
+}
+
+function readFileContent(file) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        reader.onload = event => resolve(event.target.result);
+        reader.onerror = error => reject(error);
+        reader.readAsText(file);
+    })
+}
+
+document.getElementById('input-file')
+    .addEventListener('change', getFile);
+
 
 function generateTree() {
     // ************** Generate the tree diagram	 *****************
@@ -224,19 +245,47 @@ function parseJava() {
     const ast = parse(javaText);
 }
 
-function realParseJava() {
+function realParseJava(content) {
     //TODO: Analyze the JSON cst
     const {parse} = require("java-parser");
     const javaText = `
 public class Main{
+  private static void test(int a){
+    return;
+  }
+  
   public static void main(String args[]){
+    test(a);
     System.out.println("Hello World !");
   }
 }
 `;
 
-    const cst = parse(javaText);
+
+    const cst = parse(content);
     console.log(cst);
+    const {JSONPath} = require('jsonpath-plus');
+    let methodNames = JSONPath({path: '$..methodDeclaration[0].children.methodHeader[0].children.methodDeclarator[0].children.Identifier[0].image', json: cst});
+    console.log(methodNames);
+    let result = [];
+    let methods = JSONPath({path: '$..methodDeclaration[0].children', json:cst});
+    console.log("methods");
+    console.log(methods);
+    methods.forEach(function(method){
+        let namePath = '$.methodHeader[0].children.methodDeclarator[0].children.Identifier[0].image';
+        let name = JSONPath({path:namePath, json:method})[0];
+        console.log(name);
+        let usePath = '$.methodBody[0].children..fqnOrRefTypePart[0].children.Identifier[0].image';
+        let allUsage = JSONPath({path:usePath, json:method});
+        console.log(allUsage);
+
+        let usage = allUsage.filter(function(elt){
+            return methodNames.includes(elt);
+        });
+        console.log(usage);
+        result.push({name: name, import: usage});
+    });
+    console.log(result);
 }
 
 window.onload = function () {
@@ -273,20 +322,3 @@ function parseHTML() {
     });
 }
 
-function parseJavascript() {
-}
-
-function parse() {
-
-    realParseJava();
-    parseHTML()
-    let myPromise = asyncGetFile(fileName);
-    myPromise.then((retrievedText) => {
-        // treeData = JSON.parse(retrievedText);
-        // console.log(treeData);
-        // generateTree();
-    }).catch(
-        (reason) => {
-            console.log('Handle rejected promise (' + reason + ') here.');
-        });
-}
