@@ -34095,20 +34095,14 @@ public class Main{
 
 
     const cst = parse(content);
-    console.log(cst);
     const {JSONPath} = require('jsonpath-plus');
     let methodNames = JSONPath({path: '$..methodDeclaration[0].children.methodHeader[0].children.methodDeclarator[0].children.Identifier[0].image', json: cst});
-    console.log(methodNames);
     let methods = JSONPath({path: '$..methodDeclaration[0].children', json:cst});
-    console.log("methods");
-    console.log(methods);
     methods.forEach(function(method){
         let namePath = '$.methodHeader[0].children.methodDeclarator[0].children.Identifier[0].image';
         let name = JSONPath({path:namePath, json:method})[0];
-        console.log(name);
         let usePath = '$.methodBody[0].children..fqnOrRefTypePart[0].children.Identifier[0].image';
         let allUsage = JSONPath({path:usePath, json:method});
-        console.log(allUsage);
         let usage = allUsage.filter(function(elt){
             return methodNames.includes(elt);
         });
@@ -34117,10 +34111,8 @@ public class Main{
             usage[i] = 'javaDraw.' + usage[i];
         }
 
-        console.log(usage);
         data.push({name: 'javaDraw.' + name, imports: usage});
     });
-    console.log(data);
 }
 
 },{"java-parser":44,"jsonpath-plus":58}],62:[function(require,module,exports){
