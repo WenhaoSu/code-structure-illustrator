@@ -3,11 +3,11 @@ In this project, we have implemented an information visualization application us
 
 
 
-The index.html is the welcome and introduction page. To use the whole system, please directly click the index.html.
+The index.html is the welcome and introduction page. 
 
+To use the whole system, please open the ```index.html```.
 
-
-java.html and html.html are the subpage for parsing the java and html files.
+```java.html``` and ```html.html``` are the subpage for parsing the java and html files.
 
 
 
