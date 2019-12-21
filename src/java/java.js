@@ -176,6 +176,7 @@ public class Main{
 }
 `;
 
+data = []
 
     const cst = parse(content);
     const {JSONPath} = require('jsonpath-plus');
