@@ -1,5 +1,0 @@
-[
-{"name":"flare.test", "imports":[]},
-{"name":"flare.main", "imports":["flare.test"]},
-{"name":"flare.flare", "imports":["flare.test", "flare.main"]}
-]
