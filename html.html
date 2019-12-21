@@ -1,36 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <title>Tree Example</title>
-  <link rel="stylesheet" href="src/index.css">
-</head>
 
+<body class="left-sidebar is-preload">
+  <style>
+    .node {
+    cursor: pointer;
+}
 
-<script src="src/bundle.js"></script>
-<body>
-<h>Input HTML Here!</h>
-<br>
-<textarea id="t1" rows="10" cols="200">
-</textarea>
-<br>
+.node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+}
 
-<button id="but" name="p">
-go
-</button>
-<div style="text-align:center;">
-  <div id="graph"></div>
-</div>
-  <!-- load the d3.js library -->
-<script src="https://d3js.org/d3-hierarchy.v1.min.js"></script>
-<script src="https://d3js.org/d3-selection.v1.min.js"></script>
-<script src="https://d3js.org/d3-path.v1.min.js"></script>
-<script src="https://d3js.org/d3-shape.v1.min.js"></script>
-<script src="https://d3js.org/d3.v3.min.js"></script>
-  <!--  <script src="https://d3js.org/d3-hierarchy.v1.min.js"></script>-->
-  <!--  <script src="https://d3js.org/d3-selection.v1.min.js"></script>-->
-  <!--  <script src="https://d3js.org/d3-path.v1.min.js"></script>-->
-  <!--  <script src="https://d3js.org/d3-shape.v1.min.js"></script>-->
+.node text {
+    font: 12px sans-serif;
+}
 
-</body>
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+</style>
+
+  <title>HTML Code Visualization</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+
+  <body class="left-sidebar is-preload">
+    <script src="src/bundle.js"></script>
+
+    <div id="page-wrapper">
+
+      <!-- Header -->
+      <div id="header-wrapper">
+        <div id="header" class="container">
+
+          <!-- Logo -->
+          <h1 id="logo"><a href="index.html">CodeVision</a></h1>
+        </div>
+      </div>
+
+      <!-- Main -->
+      <div class="wrapper">
+        <div class="container" id="main">
+          <div class="row gtr-150">
+            <div class="col-4 col-12-narrower">
+
+              <!-- Sidebar -->
+              <section id="sidebar">
+                <section>
+                  <header>
+
+                    <h3>Input HTML Here!</h3>
+
+                  </header>
+                  <ul class="actions">
+                    <div>
+
+                      <textarea id="t1" rows="7" cols="30"></textarea>
+                    <br>
+                    <li>
+                      <button class="button" id="but" name="p" style="margin-left: 75px;">
+                        Go!
+                      </button>
+                    </li>
+                    </div>
+
+                  </ul>
+                </section>
+              </section>
+            </div>
+            <div class="col-8 col-12-narrower imp-narrower">
+
+              <!-- Content -->
+              <article id="content">
+                <header>
+
+                  <h2>HTML Function Call Relation</h2>
+                </header>
+                <div id="graph">
+                  <p style="color: black;">
+                    Use curved edges to show Java function call relationship. The callers of a function are shown 
+								in blue lines and the callees are shown in red lines. 
+                  </p>
+
+                </div>
+              </article>
+
+            </div>
+          </div>
+          <div id="copyright" class="container" style="padding: 20px;">
+                <header class="major" style="padding: 10px; margin: 0;">
+                  <a href="index.html" class="button">Go Back</a>
+                </header>
+            </div>
+
+          <div id="copyright" class="container"  style="margin: 0;">
+            <ul class="menu">
+              <li>Implemented with &hearts; by Wenhao Su, Yichen Yang, Zhen Yu</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.dropotron.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+      <!-- load the d3.js library -->
+      <!--  <script src="https://d3js.org/d3.v3.min.js"></script>-->
+      <script src="https://d3js.org/d3.v3.min.js"></script>
+      <!--  <script type="text/javascript" src="htmlTree.json"></script>-->
+      <script src="src/bundle.js"></script>
+  </body>
+
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+<html>
+<style>
+  input#input-file{
+    display: inline-block;
+  width: 80%;
+  padding: 100px 0 0 0;
+  height: 80px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #ffffff;
+  border-radius: 20px;
+  background-size: 60px 60px;;
+  }
+</style>
+	<head>
+		<title>Java Code Visualization</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="left-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header-wrapper">
+					<div id="header" class="container">
+
+						<!-- Logo -->
+							<h1 id="logo"><a href="index.html">CodeVision</a></h1>
+					</div>
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper">
+					<div class="container" id="main">
+						<div class="row gtr-150">
+							<div class="col-4 col-12-narrower">
+
+								<!-- Sidebar -->
+									<section id="sidebar">
+										<section>
+											<header>
+												<h3>Upload Java File:</h3>
+											</header>
+											<ul class="actions">
+                        <li>
+                        <input class="button" type="file" id="input-file">
+                        </li>
+											</ul>
+										</section>
+									</section>
+							</div>
+							<div class="col-8 col-12-narrower imp-narrower">
+
+								<!-- Content -->
+									<article id="content">
+										<header>
+
+											<h2>Java Function Call Relation</h2>
+                    </header>
+                    <div id="graph">
+                      <p style="color: black;">
+								Use curved edges to show Java function call relationship. The callers of a function are shown 
+								in <span style="color:blue">blue</span> lines and the callees are shown in <span style="color:red">red</span> lines. 
+								</p>
+
+                    </div>
+									</article>
+
+							</div>
+						</div>
+            <div id="copyright" class="container" style="padding: 20px;">
+              <header class="major" style="padding: 10px; margin: 0;">
+                <a href="index.html" class="button">Go Back</a>
+              </header>
+          </div>	
+					<div id="copyright" class="container" style="margin: 0;">
+						<ul class="menu">
+							<li>Implemented with &hearts; by Wenhao Su, Yichen Yang, Zhen Yu</li>
+						</ul>
+					</div>
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+        <!-- load the d3.js library -->
+<!--  <script src="https://d3js.org/d3.v3.min.js"></script>-->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3-hierarchy.v1.min.js"></script>
+  <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+  <script src="https://d3js.org/d3-path.v1.min.js"></script>
+  <script src="https://d3js.org/d3-shape.v1.min.js"></script>
+  <!--  <script type="text/javascript" src="htmlTree.json"></script>-->
+  <script src="src/java/bundle2.js"></script>
+	</body>
+</html>

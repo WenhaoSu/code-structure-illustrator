@@ -1,4 +1,4 @@
-let width = 954;
+let width = 730;
 let radius = width / 2;
 let colorNone = "#ccc";
 let colorOut = "#f00";
@@ -71,7 +71,9 @@ function generateTree(data) {
     const root = tree(bilink(d3.hierarchy(data)
         .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.name, b.data.name))));
 
-    const svg = d3.select("body").append("svg")
+    d3.select("body").select("#graph").select("svg").remove();
+
+    let svg = d3.select("body").select("#graph").append("svg")
         .attr("viewBox", [-width / 2, -width / 2, width, width]);
 
     const node = svg.append("g")
