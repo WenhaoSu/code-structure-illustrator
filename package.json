@@ -20,7 +20,7 @@
     "array-slice": "^1.1.0",
     "browsify": "0.0.4",
     "collections": "^5.1.9",
-    "d3": "^5.14.2",
+    "d3": "^7.6.1",
     "html-to-json": "^0.6.0",
     "java-ast": "^0.1.0",
     "java-parser": "^0.4.0",
